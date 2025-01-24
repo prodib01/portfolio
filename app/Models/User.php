@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_picture', // Add this field to allow mass assignment
     ];
 
     /**
@@ -42,4 +43,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Accessor for the profile picture URL.
+     *
+     * @return string
+     */
+    public function getProfilePictureUrlAttribute()
+    {
+        return $this->profile_picture
+            ? asset('storage/profile_pictures/' . $this->profile_picture)
+            : asset('default-avatar.png'); // Ensure this file exists in the public directory
+    }
 }
