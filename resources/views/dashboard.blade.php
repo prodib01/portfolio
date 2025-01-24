@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <h1>Welcome, {{ auth()->user()->name }}</h1>
-    <!-- Display user-specific details -->
+<div class="bg-white shadow-md rounded-lg p-6">
+
+</div>
 @endsection
