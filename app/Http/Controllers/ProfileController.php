@@ -39,4 +39,14 @@ class ProfileController extends Controller
 
         return Redirect::route('profile.edit')->with('status', 'profile-picture-updated');
     }
+
+    public function edit(Request $request): View
+    {
+        return view('profile.edit', [
+            'user' => $request->user(),
+            'profile_picture' => $request->user()->profile_picture
+                ? asset('storage/profile_pictures/' . $request->user()->profile_picture)
+                : asset('default-avatar.png')
+        ]);
+    }
 }

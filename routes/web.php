@@ -37,6 +37,13 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.submission');
 Route::get('/resume', [ResumeController::class, 'index'])->name('resume');
 Route::post('/download-resume', [ResumeController::class, 'downloadResume'])->name('download-resume');
-Route::post('/profile/picture', [ProfileController::class, 'picture'])->name('profile.picture.update');
+Route::post('/profile/picture', [ProfileController::class, 'updateProfilePicture'])
+    ->name('profile.picture.update');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 require __DIR__.'/auth.php';
