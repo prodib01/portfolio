@@ -13,4 +13,9 @@ class Skill extends Model
         'name',
         'proficiency',
     ];
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

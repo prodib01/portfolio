@@ -55,4 +55,14 @@ class User extends Authenticatable
             ? asset('storage/profile_pictures/' . $this->profile_picture)
             : asset('default-avatar.png'); // Ensure this file exists in the public directory
     }
+
+    public function skills()
+    {
+        return $this->hasMany(Skill::class);
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }

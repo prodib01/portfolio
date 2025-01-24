@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Skill;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,5 +18,8 @@ class SkillsTableSeeder extends Seeder
             'name' => 'Programming',
             'proficiency' => 'Expert'
         ]);
+        User::all()->each(function ($user) {
+            Skill::factory()->count(5)->create(['user_id' => $user->id]);
+        });
     }
 }
