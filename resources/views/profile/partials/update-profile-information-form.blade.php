@@ -1,7 +1,7 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
-            Profile Picture & Description
+            Profile & Description
         </h2>
     </header>
 
@@ -48,6 +48,23 @@
             >{{ old('description', $description) }}</textarea>
 
             @error('description')
+            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div>
+            <label for="role" class="block text-sm font-medium text-gray-700">
+                Current role
+            </label>
+            <input
+                type="text"
+                id="role"
+                name="role"
+                class="mt-1 block w-full rounded-md border-gray-300"
+                placeholder="What is your current role?"
+            >{{ old('role', $role) }}
+
+            @error('role')
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>

@@ -20,7 +20,8 @@ class ProfileController extends Controller
     {
         $request->validate([
             'profile_picture' => 'required|image|max:2048|mimes:jpeg,png,jpg,gif',
-            'description' => 'nullable|string|max:500', // Add max length for description
+            'description' => 'nullable|string|max:500',
+            'role' => 'nullable|string'
         ]);
 
         $user = $request->user();
@@ -36,7 +37,8 @@ class ProfileController extends Controller
 
         // Update user's profile picture and description
         $user->profile_picture = $filename;
-        $user->description = $request->input('description'); // Update description
+        $user->description = $request->input('description');
+        $user->role = $request->input('role');
         $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-picture-updated');
@@ -50,6 +52,7 @@ class ProfileController extends Controller
         return view('profile.edit', [
             'user' => $request->user(),
             'description' => $request->user()->description,
+            'role' => $request->user()->role,
             'profile_picture' => $request->user()->profile_picture
                 ? asset('storage/profile_pictures/' . $request->user()->profile_picture)
                 : asset('default-avatar.png'),
