@@ -14,18 +14,19 @@ class ProfileController extends Controller
     // Existing methods...
 
     /**
-     * Update profile picture
+     * Update profile picture and description.
      */
     public function updateProfilePicture(Request $request): RedirectResponse
     {
         $request->validate([
-            'profile_picture' => 'required|image|max:2048|mimes:jpeg,png,jpg,gif'
+            'profile_picture' => 'required|image|max:2048|mimes:jpeg,png,jpg,gif',
+            'description' => 'nullable|string|max:500', // Add max length for description
         ]);
 
         $user = $request->user();
 
-        // Remove old profile picture if exists
-        if ($user->profile_picture) {
+        // Remove old profile picture if exists and is valid
+        if ($user->profile_picture && Storage::exists('public/profile_pictures/' . $user->profile_picture)) {
             Storage::delete('public/profile_pictures/' . $user->profile_picture);
         }
 
@@ -33,20 +34,25 @@ class ProfileController extends Controller
         $filename = uniqid() . '.' . $request->file('profile_picture')->getClientOriginalExtension();
         $request->file('profile_picture')->storeAs('public/profile_pictures', $filename);
 
-        // Update user's profile picture
+        // Update user's profile picture and description
         $user->profile_picture = $filename;
+        $user->description = $request->input('description'); // Update description
         $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-picture-updated');
     }
 
+    /**
+     * Edit user profile.
+     */
     public function edit(Request $request): View
     {
         return view('profile.edit', [
             'user' => $request->user(),
+            'description' => $request->user()->description,
             'profile_picture' => $request->user()->profile_picture
                 ? asset('storage/profile_pictures/' . $request->user()->profile_picture)
-                : asset('default-avatar.png')
+                : asset('default-avatar.png'),
         ]);
     }
 }

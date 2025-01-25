@@ -1,7 +1,7 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
-            Profile Picture
+            Profile Picture & Description
         </h2>
     </header>
 
@@ -9,8 +9,7 @@
         @csrf
         @method('POST')
 
-
-
+        <!-- Profile Picture -->
         <div>
             <img
                 src="{{ $profile_picture }}"
@@ -35,8 +34,27 @@
             @enderror
         </div>
 
+        <!-- Description -->
+        <div>
+            <label for="description" class="block text-sm font-medium text-gray-700">
+                Description
+            </label>
+            <textarea
+                id="description"
+                name="description"
+                rows="3"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                placeholder="Write something about yourself..."
+            >{{ old('description', $description) }}</textarea>
+
+            @error('description')
+            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <!-- Buttons -->
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Update Profile Picture') }}</x-primary-button>
+            <x-primary-button>{{ __('Update Profile') }}</x-primary-button>
 
             @if (session('status') === 'profile-picture-updated')
                 <p
@@ -45,7 +63,7 @@
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600"
-                >{{ __('Profile picture updated.') }}</p>
+                >{{ __('Profile updated successfully.') }}</p>
             @endif
         </div>
     </form>

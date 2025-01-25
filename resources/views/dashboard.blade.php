@@ -10,7 +10,7 @@
                         Hi, I'm {{ $user->name }}
                     </h1>
                     <p class="text-xl mb-6">
-                        Web Developer | Creative Problem Solver | Tech Enthusiast
+                        {{ $user->description }}
                     </p>
                     <div class="space-x-4">
                         <a href="{{ route('projects.index') }}" class="bg-white text-blue-600 px-6 py-3 rounded-full hover:bg-blue-100 transition">
