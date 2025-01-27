@@ -28,7 +28,7 @@ Route::get('/', function () {
 
 Route::resource('projects', ProjectController::class);
 Route::resource('skills', SkillController::class);
-Route::resource('experience', ExperienceController::class);
+Route::resource('experiences', ExperienceController::class);
 Route::resource('educations', EducationController::class);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])

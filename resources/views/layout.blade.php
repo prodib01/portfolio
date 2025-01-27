@@ -21,7 +21,7 @@
                         <a href="/dashboard" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Home</a>
                         <a href="/projects" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Projects</a>
                         <a href="/skills" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Skills</a>
-                        <a href="/experience" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Experience</a>
+                        <a href="/experiences" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Experience</a>
                         <a href="/contact" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Contact</a>
                     </div>
 
@@ -35,8 +35,8 @@
                                 >
                             </button>
 
-                            <div 
-                                x-show="open" 
+                            <div
+                                x-show="open"
                                 @click.away="open = false"
                                 x-transition
                                 class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl overflow-hidden"

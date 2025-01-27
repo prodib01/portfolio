@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Skill;
+use Illuminate\Support\Facades\Auth;
 
 class SkillController extends Controller
 {
     public function index()
     {
-        $skills = Skill::all();
+        $skills = Auth::user()->skills->sortByDesc('proficiency');
         return view('skills.index', compact('skills'));
     }
 
@@ -25,8 +26,8 @@ class SkillController extends Controller
             'proficiency' => 'required',
         ]);
 
-        Skill::create($validated);
-        return redirect('/skills')->with('sucess', 'Skill added!');
+        Auth::user()->skills()->create($validated);
+        return redirect()->route('skills.index')->with('success', 'Skill added successfully!');
     }
 
     public function edit(Skill $skill)
@@ -41,12 +42,12 @@ class SkillController extends Controller
             'proficiency' => 'required',
         ]);
         $skill->update($validated);
-        return redirect('/skills')->with('sucess', 'Skill updated!');
+        return redirect()->route('skills.index')->with('success', 'Skill updated successfully!');
     }
 
     public function destroy(Skill $skill)
     {
         $skill->delete();
-        return redirect('/skills')->with('sucess', 'Skill deleted!');
+        return redirect()->route('skills.index')->with('success', 'Skill deleted successfully!');
     }
 }
