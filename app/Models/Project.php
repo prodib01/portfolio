@@ -9,9 +9,13 @@ class Project extends Model
 {
     use HasFactory;
 
-    public static function create(array $array)
-    {
-    }
+    protected $fillable = [
+        'title',
+        'description',
+        'technologies',
+        'github_link',
+        'live_link',
+    ];
 
     public function user()
     {

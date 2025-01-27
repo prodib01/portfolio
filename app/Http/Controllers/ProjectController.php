@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::all();
+        $projects = Auth::user()->projects()->orderBy('created_at', 'desc')->get();
         return view('projects.index', compact('projects'));
     }
 
@@ -24,9 +25,12 @@ class ProjectController extends Controller
             'title' => 'required|max:255',
             'description' => 'required',
             'technologies' => 'required',
+            'github_link' => 'nullable|url|max:255',
+            'live_link' => 'nullable|url|max:255',
         ]);
-        Project::create($validated);
-        return redirect('/projects')->with('success', 'Project created!');
+        
+        Auth::user()->projects()->create($validated);
+        return redirect()->route('projects.index')->with('success', 'Project created successfully.');
     }
 
     public function edit(Project $project)
@@ -40,14 +44,20 @@ class ProjectController extends Controller
             'title' => 'required|max:255',
             'description' => 'required',
             'technologies' => 'nullable',
+            'github_link' => 'nullable|url|max:255',
+            'live_link' => 'nullable|url|max:255',
         ]);
         $project->update($validated);
-        return redirect('/projects')->with('success', 'Project updated!');
+        return redirect()->route('projects.index')->with('success', 'Project updated successfully.');
     }
 
     public function destroy(Project $project): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
+        $this->authorize('delete', $project);
         $project->delete();
-        return redirect('/projects')->with('success', 'Project deleted!');
+
+        return redirect()->route('projects.index')->with('success', 'Project deleted successfully.');
     }
+
+
 }
