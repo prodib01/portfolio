@@ -20,7 +20,7 @@ class ContactController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'emails' => 'required|emails|max:255',
+            'email' => 'required|email|max:255',
             'subject' => 'required|string|max:255',
             'message' => 'required|string',
         ]);
@@ -30,7 +30,7 @@ class ContactController extends Controller
         $message = \App\Models\Messages::create([
             'user_id' => Auth::id(),
             'name' => $validated['name'],
-            'emails' => $validated['emails'],
+            'email' => $validated['email'],
             'subject' => $validated['subject'],
             'message' => $validated['message'],
         ]);

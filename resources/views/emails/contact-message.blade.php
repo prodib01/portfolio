@@ -1,7 +1,7 @@
 @component('mail::message')
     # New Contact Message
 
-    From: {{ $messageData['name'] }} ({{ $messageData['emails'] }})
+    From: {{ $messageData['name'] }} ({{ $messageData['email'] }})
 
     Subject: {{ $messageData['subject'] }}
 

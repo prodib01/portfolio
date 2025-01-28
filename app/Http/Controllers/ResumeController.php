@@ -15,7 +15,7 @@ class ResumeController extends Controller
         $projects = $user->projects()->orderBy('created_at', 'desc')->get();
         $skills = $user->skills()->orderBy('proficiency', 'asc')->get();
 
-        $pdf = PDF::loadView('resume.template', [
+        $pdf = PDF::loadView('resume.index', [
             'user' => $user,
             'experiences' => $experiences,
             'educations' => $educations,
