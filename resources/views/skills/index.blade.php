@@ -17,7 +17,7 @@
                 </a>
             </div>
 
-            <!-- Success Message -->
+            <!-- Success Messages -->
             @if(session('success'))
                 <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-6 rounded-md">
                     <div class="flex">

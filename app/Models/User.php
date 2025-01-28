@@ -19,7 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'emails',
         'password',
         'profile_picture', // Add this field to allow mass assignment
     ];

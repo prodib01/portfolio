@@ -21,7 +21,11 @@ class ProfileController extends Controller
         $request->validate([
             'profile_picture' => 'required|image|max:2048|mimes:jpeg,png,jpg,gif',
             'description' => 'nullable|string|max:500',
-            'role' => 'nullable|string'
+            'role' => 'nullable|string',
+            'phone' => 'nullable|string',
+            'github_url' => 'nullable|string',
+            'linkedin_url' => 'nullable|string',
+            'emails' => 'nullable|emails',
         ]);
 
         $user = $request->user();
@@ -39,6 +43,10 @@ class ProfileController extends Controller
         $user->profile_picture = $filename;
         $user->description = $request->input('description');
         $user->role = $request->input('role');
+        $user->github_url = $request->input('github_url');
+        $user->linkedin_url = $request->input('linkedin_url');
+        $user->phone = $request->input('phone');
+        $user->email = $request->input('emails');
         $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-picture-updated');
@@ -53,6 +61,10 @@ class ProfileController extends Controller
             'user' => $request->user(),
             'description' => $request->user()->description,
             'role' => $request->user()->role,
+            'github_url' => $request->user()->github_url,
+            'linkedin_url' => $request->user()->linkedin_url,
+            'phone' => $request->user()->phone,
+            'emails' => $request->user()->email,
             'profile_picture' => $request->user()->profile_picture
                 ? asset('storage/profile_pictures/' . $request->user()->profile_picture)
                 : asset('default-avatar.png'),
