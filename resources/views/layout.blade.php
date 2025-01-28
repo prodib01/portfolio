@@ -22,7 +22,6 @@
                         <a href="/projects" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Projects</a>
                         <a href="/skills" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Skills</a>
                         <a href="/experiences" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Experience</a>
-                        <a href="/contacts" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Contact</a>
                     </div>
 
                     @auth

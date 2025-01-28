@@ -18,7 +18,7 @@
                         <a href="{{ route('projects.index') }}" class="btn btn-primary">
                             View My Projects
                         </a>
-                        <a href="{{ route('contact') }}" class="btn btn-outline">
+                        <a href="{{ route('contacts.index') }}" class="btn btn-outline">
                             Contact Me
                         </a>
                     </div>
