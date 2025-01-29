@@ -64,10 +64,26 @@
                 type="email"
                 id="email"
                 name="email"
-                value="{{ old('emails', $email) }}"
+                value="{{ old('email', $email) }}"
                 class="mt-1 block w-full rounded-md border-gray-300"
             >
-            @error('emails')
+            @error('email')
+            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div>
+            <label for="name" class="block text-sm font-medium text-gray-700">
+                Full Name
+            </label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                value="{{ old('name', $name) }}"
+                class="mt-1 block w-full rounded-md border-gray-300"
+            >
+            @error('name')
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>

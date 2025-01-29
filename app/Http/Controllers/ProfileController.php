@@ -25,7 +25,9 @@ class ProfileController extends Controller
             'phone' => 'nullable|string',
             'github_url' => 'nullable|string',
             'linkedin_url' => 'nullable|string',
-            'emails' => 'nullable|emails',
+            'email' => 'nullable|email',
+            'name' => 'nullable|string',
+            'location' => 'nullable|string',
         ]);
 
         $user = $request->user();
@@ -46,7 +48,9 @@ class ProfileController extends Controller
         $user->github_url = $request->input('github_url');
         $user->linkedin_url = $request->input('linkedin_url');
         $user->phone = $request->input('phone');
-        $user->email = $request->input('emails');
+        $user->email = $request->input('email');
+        $user->name = $request->input('name');
+        $user->location = $request->input('location');
         $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-picture-updated');
@@ -64,7 +68,9 @@ class ProfileController extends Controller
             'github_url' => $request->user()->github_url,
             'linkedin_url' => $request->user()->linkedin_url,
             'phone' => $request->user()->phone,
-            'emails' => $request->user()->email,
+            'email' => $request->user()->email,
+            'name' => $request->user()->name,
+            'location' => $request->user()->location,
             'profile_picture' => $request->user()->profile_picture
                 ? asset('storage/profile_pictures/' . $request->user()->profile_picture)
                 : asset('default-avatar.png'),

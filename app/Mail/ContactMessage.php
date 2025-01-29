@@ -18,7 +18,7 @@ class ContactMessage extends Mailable
 
     public function build()
     {
-        return $this->markdown('emails.contact-message')
+        return $this->markdown('email.contact-message')
             ->subject('New Contact Form Message');
     }
 }
