@@ -29,6 +29,8 @@ Route::post('/contacts/send', [ContactController::class, 'send'])->name('contact
 // Resume routes
 Route::get('/resume', [ResumeController::class, 'index'])->name('resume');
 Route::get('/download-resume', [ResumeController::class, 'downloadResume'])->name('download.resume');
+Route::post('/update-template', [ResumeController::class, 'updateTemplate'])->name('update.template');
+Route::get('/resume-preview', [ResumeController::class, 'resumePreview']);
 
 // Dashboard & About routes
 Route::get('/dashboard', [DashboardController::class, 'index'])

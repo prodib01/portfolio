@@ -88,6 +88,22 @@
             @enderror
         </div>
 
+        <div>
+            <label for="location" class="block text-sm font-medium text-gray-700">
+                Address
+            </label>
+            <input
+                type="text"
+                id="location"
+                name="location"
+                value="{{ old('location', $location) }}"
+                class="mt-1 block w-full rounded-md border-gray-300"
+            >
+            @error('location')
+            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+
         <!-- Profile Fields Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Role -->
