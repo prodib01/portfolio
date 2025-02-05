@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+    <h1>ok</h1>
     <div class="space-y-16">
         <!-- Hero Section -->
         <section class="bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg shadow-lg overflow-hidden">
